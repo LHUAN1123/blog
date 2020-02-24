@@ -140,7 +140,7 @@
                               </tbody>
                             </table>
                         </div>
-                        <!-- 单走一个六！傻逼！！！！！ 17张牌你能秒我？-->
+                        <!-- 单走一个六！傻逼！！！！！ 17张牌你能秒我？我很帅鸭！！！-->
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
