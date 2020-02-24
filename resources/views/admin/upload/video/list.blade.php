@@ -7,10 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <link rel="stylesheet" href="/admin/css/font.css">
         <link rel="stylesheet" href="/admin/css/xadmin.css">
-<<<<<<< HEAD
         <link rel="stylesheet" href="/admin/font/iconfont.css">
-=======
->>>>>>> origin/liang
         <script src="/admin/lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="/admin/js/xadmin.js"></script>
         <!--[if lt IE 9]>
@@ -33,7 +30,6 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-<<<<<<< HEAD
                             <form class="layui-form layui-col-space5" method="get" action="/admin/video">
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
@@ -43,11 +39,9 @@
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-=======
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="username"  placeholder="请输入视频标题" autocomplete="off" class="layui-input">
->>>>>>> origin/liang
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -55,19 +49,15 @@
                             </form>
                         </div>
                         <div class="layui-card-header">
-<<<<<<< HEAD
                             <button class="layui-btn" onclick="xadmin.open('上传视频','/admin/video/create',1000,800)"><i class="layui-icon"></i>添加</button>
-                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>             
-=======
+                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>            
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
->>>>>>> origin/liang
                         </div>
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
                               <thead>
                                 <tr>
-<<<<<<< HEAD
                                   <th style="width: 1%;text-align: center;">
                                     <input type="checkbox" name=""  lay-skin="primary">
                                   </th>
@@ -106,7 +96,6 @@
                                   <td class="td-manage">
                                     <a onclick="member_stop(this,'10001')" href="javascript:;"  title="审核">
                                       <span class="iconfont icon-xxx">&#xe600;</span>
-=======
                                   <th>
                                     <input type="checkbox" name=""  lay-skin="primary">
                                   </th>
@@ -135,7 +124,6 @@
                                   <td class="td-manage">
                                     <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                       <i class="layui-icon">&#xe601;</i>
->>>>>>> origin/liang
                                     </a>
                                     <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
                                       <i class="layui-icon">&#xe642;</i>
@@ -145,17 +133,14 @@
                                     </a>
                                   </td>
                                 </tr>
-<<<<<<< HEAD
                                 @endforeach
                               </tbody>
                             </table>
                         </div>
-=======
                               </tbody>
                             </table>
                         </div>
-                        <!-- 单走一个六！傻逼！！！！！ -->
->>>>>>> origin/liang
+                        <!-- 单走一个六！傻逼！！！！！ 17张牌你能秒我？-->
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
