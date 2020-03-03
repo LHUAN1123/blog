@@ -17,7 +17,9 @@ Route::post('/admin/doLogin', 'Admin\LoginController@doLogin');				//处理后�
 
 Route::post('/admin/upload', 'Admin\ToolController@oneFile');				//单文件文件上传公用接口
 
-Route::group(['namespace' => 'Admin', 'middleware' => ['admin.login']], function () {
+Route::get('/noaccess', 'Admin\LoginController@noaccess');					//没有权限页面
+
+Route::group(['namespace' => 'Admin', 'middleware' => ['hasRole', 'admin.login']], function () {
 
 Route::get('/', 'AdminController@index'); 									//后台公共菜单
 Route::get('/admin/welcome', 'AdminController@welcome');					//后台主页
@@ -29,11 +31,21 @@ Route::resource('/admin/video', 'Upload\VideoController');					//上传视频列
 
 // ---------------------------------------------------------------------------------------------//
 
-// --------------------------------角色模块-----------------------------------------//
-
-
+// --------------------------------角色权限模块-----------------------------------------//
 Route::get('/role/auth/{id}', 'Role\RoleController@auth');			//角色授权
+Route::post('/role/doauth', 'Role\RoleController@doauth');			//处理角色授权
+
 Route::resource('/admin/role', 'Role\RoleController');				//角色
+Route::post('/admin/role/{id}', 'Role\RoleController@update');		//角色编辑
 Route::resource('/admin/power', 'Role\PowerController');			//权限
+Route::post('/admin/power/{id}', 'Role\PowerController@update');	//权限编辑
 // ----------------------------------------------------------------------------------//
+
+
+// --------------------------------用户管理-----------------------------------------//
+Route::resource('/admin/user', 'User\UserController');				//用户管理
+Route::post('/admin/user/{id}', 'User\UserController@update');	//用户编辑
+
+// --------------------------------------------------------------------------------//
+
 });

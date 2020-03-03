@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Power;
 
 class Role extends Model
 {
@@ -19,4 +20,10 @@ class Role extends Model
 
     // 4.是否维护screate_time
     public $timestamps = false;
+
+    //添加动态属性，关联权限模型
+    public function power()
+    {
+        return $this->belongsToMany('App\Models\Power', 'role_power', 'role_id', 'power_id');
+    }
 }

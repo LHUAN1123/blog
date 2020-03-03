@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Power extends Model
 {
     //关联的数据表
-    public $table = 'power';
+    public $table = 'admin_power';
 
     //2.主键
     public $primaryKey = 'id';

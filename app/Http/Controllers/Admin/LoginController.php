@@ -34,4 +34,10 @@ class LoginController extends Controller
 	    	return Response(['code' => 3, 'msg' => '密码错误，请从新输入！']);
 	    } 
     }
+
+    //没有权限页面
+    public function noaccess() 
+    {
+        return view('errors.noaccess');
+    }
 }

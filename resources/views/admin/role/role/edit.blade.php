@@ -25,7 +25,7 @@
                           <span class="x-red">*</span>角色名
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="name" name="name" required="" lay-verify="required"
+                          <input type="text" id="name" name="name" value="{{$data->name}}" required="" lay-verify="required"
                           autocomplete="off" class="layui-input">
                       </div>
                       <div class="layui-form-mid layui-word-aux">
@@ -35,7 +35,7 @@
                   <div class="layui-form-item layui-form-text" style="width: 70%;">
                     <label class="layui-form-label">角色描述</label>
                       <div class="layui-input-block">
-                        <textarea name="describe" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        <textarea name="describe" placeholder="请输入内容" class="layui-textarea">{{$data->describe}}</textarea>
                       </div>
                    </div> 
                   <div class="layui-form-item">
@@ -53,18 +53,18 @@
                   headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
               });
               $.ajax({
-                  type: "POST",
-                  url: "/admin/role",
+                  type: "post",
+                  url: "/admin/role/{{$data->id}}",
                   data:$('form').serialize(),
                   success: function (result) {
                       if (result.code == 1) {
-                          layer.alert('添加成功', function () {
+                          layer.alert(result.msg, function () {
                               window.parent.location.reload(index, function () {
                                   location.href = '/admin/role';
                               });
                           });
                       } else {
-                          layer.alert('添加失败');
+                          layer.alert(result.msg);
                       }
                   },
                   error : function (msg ) {
