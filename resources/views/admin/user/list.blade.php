@@ -64,15 +64,21 @@
                                   <td style="text-align: center;">{{$v->username}}</td>
                                   <td style="text-align: center;">{{$v->nickname}}</td>
                                   <td style="text-align: center;">
-								  @if($v->status == 1)
-									可用
-								  @else
-									禁用
-								  @endif
+                								  @if($v->status == 1)
+                									可用
+                								  @else
+                									禁用
+                								  @endif
                                   </td>
                                   <td style="text-align: center;">{{$v->email}}</td>
                                   <td style="text-align: center;">{{date('Y-m-d', $v->create_time)}}</td>
                                   <td style="text-align: center;">
+                                    <a title="秒杀结果"  onclick="xadmin.open('秒杀结果','/admin/show',800,600)" href="javascript:;">
+                                      <i class="layui-icon" style="font-size: 20px;">&#xe63c;</i>
+                                    </a>
+                                    <a title="秒杀"  onclick="xadmin.open('秒杀','/admin/init',800,400)" href="javascript:;">
+                                      <i class="layui-icon" style="font-size: 20px;">&#xe657;</i>
+                                    </a>
                                     <a title="编辑"  onclick="xadmin.open('编辑','/admin/user/{{$v->id}}/edit',800,400)" href="javascript:;">
                                       <i class="layui-icon" style="font-size: 20px;">&#xe642;</i>
                                     </a>

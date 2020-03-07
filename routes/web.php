@@ -48,4 +48,10 @@ Route::post('/admin/user/{id}', 'User\UserController@update');	//用户编辑
 
 // --------------------------------------------------------------------------------//
 
+
+// -------------------------------模拟秒杀-----------------------------------//
+Route::get('/admin/init', 'Redis\RedisController@index');
+Route::post('/admin/start', 'Redis\RedisController@start');
+Route::get('/admin/show', 'Redis\RedisController@result');
+// --------------------------------------------------------------------//
 });
