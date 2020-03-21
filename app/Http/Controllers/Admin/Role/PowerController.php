@@ -29,7 +29,6 @@ class PowerController extends Controller
             foreach($list as $k=>$v){
                 $data[] = \Redis::hgetall($hashkey.$v);
             }
-            // dd($data);
         }else {
             // 1.链接mysql数据库，获取需要的数据
             $data[] = Power::get()->ToArray();

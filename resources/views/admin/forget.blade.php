@@ -19,9 +19,6 @@
 	            display: inline-block;text-decoration: none;font-size: 17px;outline: none;
 	        }
 	        .ch_cls{background: #ef4300;}
-	        #code{width: 90px;margin-top:-20px!important;line-height:40px;}
-	        #img{float: left; line-height:40px;margin-top: -13px; margin-left: 5px;}
-			a{text-decoration: none; border-bottom: 0px solid; color: #fff}
 	        h1{color: #fff}
 	        body{color: #111}
 		</style>
@@ -29,17 +26,12 @@
 
     <body onkeydown="keyLogin();">
         <div class="page-container">
-            <h1><b>用户登录</b></h1>
+            <h1><b>忘记密码</b></h1>
             <form>
-                <input type="text" name="username"  autocomplete="off" maxlength="20" class="username" placeholder="请输入用户名">
-                <input type="password" name="password"  class="password" maxlength="25" placeholder="请输入密码">
-                <div style="height: 60px;margin-top:20px;">
-				   <img src="{{ URL('index/captcha/1') }}" alt="验证码" title="刷新图片" width="110" height="43" id="img" border="0">
-				   <input type="text" id="code" autocomplete="off" placeholder="请输入验证码" name="captcha"><span> <a id="change" href="javascript:;" code_src=""> 换一张</a></span>
-                </div>
-                 
-                <a class="sel_btn ch_cls" href="#" style="margin-top:-10px;" lay-submit id="login"><b>登&nbsp;&nbsp;&nbsp;&nbsp;录</b></a>
-                <div style="margin-top: 15px;color: #fff;" id="forget" ><span><b><a href="/admin/forget">忘记密码？</a></b></span></div>
+                <input type="text" name="email" id="email" autocomplete="off" maxlength="20" class="username" placeholder="请输入绑定的邮箱">
+                <input type="text" name="newpass" id="newpass" style="display:none" autocomplete="off" maxlength="20" class="username" placeholder="请输入新密码">
+                <a class="sel_btn ch_cls forget" href="#" style="margin-top:10px;" lay-submit id="forget"><b>下一步</b></a>
+                <a class="sel_btn ch_cls forget1" href="#" style="margin-top:10px;display:none" lay-submit id="doemail"><b>确认修改</b></a>
             </form>
         </div>
 
@@ -50,37 +42,34 @@
         <script src="/admin/assets/js/scripts.js"></script>
     	<script src="/admin/lib/layui/layui.all.js" charset="utf-8"></script>
 		<script>
-		$("#change").click(function(){  
-		       $url = "{{ URL('index/captcha') }}";  
-		       $url = $url + "/" + Math.random();  
-		       document.getElementById('img').src=$url;  
-		    });
-
 			function keyLogin(){
 			 if (event.keyCode==13)  //回车键的键值为13
-			   document.getElementById("login").click(); //调用登录按钮的登录事件
+			   document.getElementById("doemail").click(); //调用登录按钮的登录事件
 			}
 
-			$('#login').click(function () {
+			$('.forget').click(function () {
 		        $.ajaxSetup({
 		            headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
 		        });
 				$.ajax({
 					type:'post',
-					url:'/admin/doLogin',
+					url:'/admin/doforget',
 					data:$('form').serialize(),
 					dataType:'json',
 					success: function (data) {
-						if (data.code == 2) {
-							layer.msg('登录成功，正在跳转！', {
-								time:1000,
+						if (data.code == 1) {
+							layer.msg(data.msg, {
+								time:2000,
 								icon:6,
 							}, function () {
-								location.href = '/'
+								document.getElementById("email").style.display="none";
+								document.getElementById("forget").style.display="none";
+								document.getElementById("newpass").style.display="block";
+								document.getElementById("doemail").style.display="block";
 							}); 
 						} else {
 							layer.open({
-								title:'登录失败！',
+								title:'失败！',
 								content:data.msg,
 								icon:2,
 								anim:1

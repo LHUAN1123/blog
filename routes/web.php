@@ -14,10 +14,13 @@
 /*------------------------后台路由---------------------------*/
 Route::view('/admin/login', 'admin.login');					       			//后台登录页面
 Route::post('/admin/doLogin', 'Admin\LoginController@doLogin');				//处理后台登录
+Route::view('/admin/forget', 'admin.forget');								//忘记密码
+Route::post('/admin/doforget', 'Admin\LoginController@doforget');			//查找绑定邮箱
 
 Route::post('/admin/upload', 'Admin\ToolController@oneFile');				//单文件文件上传公用接口
 
 Route::get('/noaccess', 'Admin\LoginController@noaccess');					//没有权限页面
+Route::get('/index/captcha/{tmp}', 'Admin\LoginController@captcha'); 
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['hasRole', 'admin.login']], function () {
 
