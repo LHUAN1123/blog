@@ -44,7 +44,8 @@
 		<script>
 			function keyLogin(){
 			 if (event.keyCode==13)  //回车键的键值为13
-			   document.getElementById("doemail").click(); //调用登录按钮的登录事件
+			   //document.getElementById("doemail").click(); //调用登录按钮的登录事件
+			   $('#doemail').click();
 			}
 
 			$('.forget').click(function () {
@@ -65,7 +66,8 @@
 								document.getElementById("email").style.display="none";
 								document.getElementById("forget").style.display="none";
 								document.getElementById("newpass").style.display="block";
-								document.getElementById("doemail").style.display="block";
+								//document.getElementById("doemail").style.display="block";
+								$('doemail').css("display","block");
 							}); 
 						} else {
 							layer.open({
