@@ -39,7 +39,7 @@
                 </div>
                  
                 <a class="sel_btn ch_cls" href="#" style="margin-top:-10px;" lay-submit id="login"><b>登&nbsp;&nbsp;&nbsp;&nbsp;录</b></a>
-                <div style="margin-top: 15px;color: #fff;" id="forget" ><span><b><a href="/admin/forget">忘记密码？</a></b></span></div>
+                <div style="margin-top: 15px;color: #fff;" id="forget" ><span><b><a href="/admin/forget">忘记密码？</a></b></span><span style="margin-left: 110px;"><b><a href="/admin/register">注册</a></b></span></div>
             </form>
         </div>
 

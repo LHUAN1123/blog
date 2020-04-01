@@ -29,7 +29,7 @@
             <h1><b>忘记密码</b></h1>
             <form>
                 <input type="text" name="email" id="email" autocomplete="off" maxlength="20" class="username" placeholder="请输入绑定的邮箱">
-                <input type="text" name="newpass" id="newpass" style="display:none" autocomplete="off" maxlength="20" class="username" placeholder="请输入新密码">
+                <input type="password" name="newpass" id="newpass" style="display:none" autocomplete="off" maxlength="20" class="username" placeholder="请输入新密码">
                 <a class="sel_btn ch_cls forget" href="#" style="margin-top:10px;" lay-submit id="forget"><b>下一步</b></a>
                 <a class="sel_btn ch_cls forget1" href="#" style="margin-top:10px;display:none" lay-submit id="doemail"><b>确认修改</b></a>
             </form>
@@ -63,11 +63,11 @@
 								time:2000,
 								icon:6,
 							}, function () {
-								document.getElementById("email").style.display="none";
-								document.getElementById("forget").style.display="none";
-								document.getElementById("newpass").style.display="block";
-								//document.getElementById("doemail").style.display="block";
-								$('doemail').css("display","block");
+								$('#doemail').css("display","block");
+								$('#email').css("display", "none");
+								$("#forget").css("display", 'none');
+								$("#newpass").css("display", "block");
+//								$("#hide").val(data.result);
 							}); 
 						} else {
 							layer.open({
@@ -90,6 +90,46 @@
 		                });
 		            }
 				});
+			});
+
+			$('.forget1').click(function () {
+				$.ajaxSetup({
+					headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' }
+				});
+				$.ajax({
+					type:'post',
+					url:'/admin/modify_pass',
+					data:$('form').serialize(),
+					dataType:'json',
+					success: function (data) {
+						if (data.code == 1) {
+							layer.msg(data.msg, {
+								time:2000,
+								icon:6,
+							}, function () {
+							location.href = '/admin/login'
+						});
+			} else {
+				layer.open({
+					title:'失败！',
+					content:data.msg,
+					icon:2,
+					anim:1
+				});
+			}
+			},
+			error : function (msg ) {
+				var json=JSON.parse(msg.responseText);
+				$.each(json.errors, function(index, obj) {
+					layer.open({
+						content:obj[0],
+						icon:5,
+						anim:6
+					});
+					return false;
+				});
+			}
+			});
 			});
 		</script>
     </body>

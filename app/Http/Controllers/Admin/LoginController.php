@@ -8,7 +8,9 @@ use DB;
 use Session;
 use Gregwar\Captcha\CaptchaBuilder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\LoginPost;
+use App\Http\Requests\RegisterPost;
 
 class LoginController extends Controller
 {
@@ -67,10 +69,57 @@ class LoginController extends Controller
         $builder->output();
     }
 
-    //忘记密码
+    //查找绑定邮箱
     public function doforget(Request $request)
     {
-        // dd($request->only('email'));
-        return Response(['code' => 1, 'msg' => '邮箱正确，请在输入框输入新密码']);   
+        $email = $request->only('email');
+        if (empty($email['email'])) {
+            return Response(['code' => 2, 'msg' => '邮箱不能为空！']);
+        }
+
+        $data = DB::table('admin_users')->where($email)->value("email");
+        if ($data == $email['email']) {
+            return Response(['code' => 1, 'msg' => '邮箱正确，请在输入框输入新密码', 'result' => $email['email']]);
+        } else {
+            return Response(['code' => 2, 'msg' => '您的邮箱没有在本站注册']);
+        }
     }
+
+    //修改密码将新密码发送至邮箱
+    public function modify_pass(Request $request)
+    {
+        $email = $request->only('email');
+        $data = $request->only('newpass');
+        $pass = Hash::make($data['newpass']);
+        $result =  DB::table('admin_users')->where($email)->update(['password' => $pass]);
+       if ($result) {
+           Mail::send('admin.email', ['emali' => $email['email'], 'newpass' =>  $data['newpass']],  function($message) use ($email){
+               $message->to($email['email']);
+               $message->subject('修改密码');
+           });
+           return Response(['code' => 1, 'msg' => '修改密码成功，已将您的新密码发送至您的邮箱！']);
+       } else{
+           return Response(['code' => 2, 'msg' => '修改密码失败！']);
+       }
+    }
+
+    //后台会员注册
+    public function doregister(RegisterPost $request)
+    {
+        $data = $request->only(['username', 'nickname','email']);
+        //加密密码
+        $password = Hash::make($request->password);
+        $data['create_time'] = time();
+        $data['password'] = $password;
+        $result = DB::table('admin_users')->insertGetId($data);
+        if ($result) {
+            $info['uid'] = $result;
+            $info['role_id'] = 7; 
+            DB::table('user_role')->insert($info);
+           return Response(['code' => 1, 'msg' => '注册成功！']); 
+        } else {
+            return Response(['code' => 2, 'msg' => '注册失败！']);
+        }
+    }
+    
 }

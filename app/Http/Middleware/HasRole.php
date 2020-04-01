@@ -38,16 +38,16 @@ class HasRole
         $urls = array_unique($urls);
         
         // 判断当前请求的路由对应控制器的方法名是否在当前用户拥有的权限列表中也就是$urls中
-        // if (!in_array($route, $urls)) {
+        if (!in_array($route, $urls)) {
+            // dd($route);
+            if ($request->ajax()) {
+                return Response(['status'=>0,'msg'=>'很抱歉，您暂无操作此功能的权限！']);
+            } else {
+                return response()->view('errors.noaccess');
+            }
 
-        //     if ($request->ajax()) {
-        //         return Response(['status'=>0,'msg'=>'很抱歉，您暂无操作此功能的权限！']);
-        //     } else {
-        //         return response()->view('errors.noaccess');
-        //     }
-
-        // } else {
+        } else {
             return $next($request);
-        // }
+        }
     }
 }

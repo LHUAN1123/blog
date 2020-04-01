@@ -13,6 +13,8 @@ class Role extends Model
     //2.主键
     public $primaryKey = 'id';
 
+    protected $connection = 'mysql1';
+
     //3.允许批量操作的字段
     
     // public $fillable = ['username', 'nickname', 'password', 'email'];
