@@ -29,9 +29,9 @@ Route::get('/index/captcha/{tmp}', 'Admin\LoginController@captcha');
 
 Route::group(['namespace' => 'Admin', 'middleware' => ['hasRole', 'admin.login']], function () {
 
-Route::get('/', 'AdminController@index'); 									//后台公共菜单
+Route::get('/', 'AdminController@index'); 									//后台公共菜单7777
 Route::get('/admin/welcome', 'AdminController@welcome');					//后台主页
-Route::get('/admin/logout', 'AdminController@logout');						//退出登陆
+Route::get('/admin/logout', 'AdminController@logout');						//退出登陆123
 
 // -------------------------------图片、音乐、文章、视频上传-----------------------------------//
 Route::resource('/admin/video', 'Upload\VideoController');					//上传视频列表
