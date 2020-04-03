@@ -14,7 +14,7 @@ class MusicController extends Controller
      */
     public function index()
     {
-        //
+        //音乐列表
         $data = DB::table('admin_music')
                     ->leftJoin('admin_upload', 'admin_music.music_id', '=', 'admin_upload.id')
                     ->select('admin_music.*', 'admin_upload.url')
