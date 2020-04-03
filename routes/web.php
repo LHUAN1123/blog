@@ -35,7 +35,7 @@ Route::get('/admin/logout', 'AdminController@logout');						//退出登陆123
 
 // -------------------------------图片、音乐、文章、视频上传-----------------------------------//
 Route::resource('/admin/video', 'Upload\VideoController');					//上传视频列表
-Route::resource('/admin/music', 'Upload\Musiccontroller');					//上传音乐
+Route::resource('/admin/music', 'Upload\MusicController');					//上传音乐
 
 // ---------------------------------------------------------------------------------------------//
 
