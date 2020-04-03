@@ -38,7 +38,7 @@ class ToolController extends Controller
     		//将路径存入数据库
     		$id = DB::table('admin_upload')->insertGetId($data);
     		return $id;
-    	}else if (type == 3) {
+    	}else if ($type == 3) {
     		//获取路径和类型
     		$data['url'] = $url;
     		$data['type'] = 3;

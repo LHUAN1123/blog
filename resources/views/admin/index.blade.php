@@ -67,7 +67,7 @@
                                     <cite>图片上传列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('音乐上传列表','member-list1.html',true)">
+                                <a onclick="xadmin.add_tab('音乐上传列表','/admin/music')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>音乐上传列表</cite></a>
                             </li>

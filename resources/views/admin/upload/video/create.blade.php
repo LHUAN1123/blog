@@ -188,7 +188,7 @@
 		            url: "/admin/video",
 		            data:$('form').serialize(),
 		            success: function (result) {
-		                if (result == 1) {
+		                if (result.code == 1) {
 		                    layer.alert('保存成功', function () {
 		                        window.parent.location.reload(index, function () {
 		                            location.href = '/admin/video';

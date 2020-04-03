@@ -50,7 +50,7 @@ class VideoController extends Controller
         if ($result) {
            return Response(['code' => 1, 'msg' => '上传成功，待审核中']); 
         } else {
-            return 2;
+            return Response(['code' => 2, 'msg' => '上传失败！']);
         }
     }
 
