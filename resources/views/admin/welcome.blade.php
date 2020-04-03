@@ -141,26 +141,13 @@
                     <div class="layui-card" style="height: 320px;">
                         <div class="layui-carousel" id="test1" lay-filter="test1">
                           <div carousel-item="">
+                            @foreach($data as $v)
                             <div>            
                                 <a href="javascript:;">
-                                  <img style="width: 100%;height: 100%;" src="/upload/file2020-02\1581834690.jpg">
+                                  <img style="width: 100%;height: 100%;" src="/{{$v->url}}">
                                 </a>
                             </div>
-                            <div>            
-                                <a href="javascript:;">
-                                  <img style="width: 100%;height: 100%;" src="/upload/file2020-02\1581834690.jpg">
-                                </a>
-                            </div>
-                            <div>            
-                                <a href="javascript:;">
-                                  <img style="width: 100%;height: 100%;" src="/upload/file2020-02\1581834690.jpg">
-                                </a>
-                            </div>
-                            <div>            
-                                <a href="javascript:;">
-                                  <img style="width: 100%;height: 100%;" src="/upload/file2020-02\1581834690.jpg">
-                                </a>
-                            </div>
+                            @endforeach
                           </div>
                         </div>
                     </div>
